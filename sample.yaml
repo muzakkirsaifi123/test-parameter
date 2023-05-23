@@ -1,0 +1,138 @@
+shared-resources:
+- name: aks-cluster-01
+  type: aks
+  depends-on: {}
+  resource-group-name: resource-group-01
+  config:
+    kubernetes-version: '1.25.5'
+    autoscaling-enabled: false
+    node-pool:
+      node-count: 10
+      type: VirtualMachineScaleSets
+      vm:
+        size: Standard_DS2_v2
+        os-disk-size-gb: 30
+
+- name: acr-01
+  type: acr
+  depends-on: {}
+  resource-group-name: resource-group-01
+  config:
+    acr-version: '1.25.5'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets
+      acr:
+        size: Standard_DS2_v2
+        os-disk-size-gb: 30
+
+- name: vnet-01
+  type: vnet
+  depends-on: {}
+  resource-group-name: resource-group-01-vnet
+  config:
+    acr-version: '1.25.5-vnet'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets-vnet
+      acr:
+        size: Standard_DS2_v2-vnet
+        os-disk-size-gb: 30
+- name: subnet-01
+  type: subnet
+  depends-on: {}
+  resource-group-name: resource-group-01-subnet
+  config:
+    acr-version: '1.25.5-subnet'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets-subnet
+      acr:
+        size: Standard_DS2_v2-subnet
+        os-disk-size-gb: 30
+
+- name: VM-01
+  type: VM
+  depends-on: {}
+  resource-group-name: resource-group-01-VM
+  config:
+    acr-version: '1.25.5-VM'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets-VM
+      acr:
+        size: Standard_DS2_v2-VM
+        os-disk-size-gb: 30
+
+- name: aks-cluster-01
+  # type: aks-2
+  depends-on: {}
+  resource-group-name: resource-group-01
+  config:
+    kubernetes-version: '1.25.5'
+    autoscaling-enabled: false
+    node-pool:
+      node-count: 10
+      type: VirtualMachineScaleSets
+      vm:
+        size: Standard_DS2_v2
+        os-disk-size-gb: 30
+
+- name: acr-01
+  type: acr-2
+  depends-on: {}
+  resource-group-name: resource-group-01
+  config:
+    acr-version: '1.25.5'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets
+      acr:
+        size: Standard_DS2_v2
+        os-disk-size-gb: 30
+
+- name: vnet-01
+  type: vnet-2
+  depends-on: {}
+  resource-group-name: resource-group-01-vnet
+  config:
+    acr-version: '1.25.5-vnet'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets-vnet
+      acr:
+        size: Standard_DS2_v2-vnet
+        os-disk-size-gb: 30
+- name: subnet-01
+  # type: subnet-2
+  depends-on: {}
+  resource-group-name: resource-group-01-subnet
+  config:
+    acr-version: '1.25.5-subnet'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets-subnet
+      acr:
+        size: Standard_DS2_v2-subnet
+        os-disk-size-gb: 30
+
+- name: VM-02
+  type: VM-2
+  depends-on: {}
+  resource-group-name: resource-group-01-VM
+  config:
+    acr-version: '1.25.5-VM'
+    autoscaling-enabled: false
+    acr-pool:
+      acr-count: 10
+      type: VirtualMachineScaleSets-VM
+      acr:
+        size: Standard_DS2_v2-VM
+        os-disk-size-gb: 30
